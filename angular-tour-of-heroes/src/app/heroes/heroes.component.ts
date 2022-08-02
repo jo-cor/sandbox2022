@@ -23,6 +23,9 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    //https://angular.io/tutorial/toh-pt4#subscribe-in-heroescomponent
+    //the old way was synchronous
+    //the new way is asynchronous
+    this.heroService.getHeroes().subscribe((r) => (this.heroes = r));
   }
 }
