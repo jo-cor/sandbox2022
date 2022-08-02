@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -12,7 +13,10 @@ export class HeroesComponent implements OnInit {
 
   selectedHero?: Hero;
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.getHeroes(); //bad practice: call this at the ctor who should do the bare minimum
@@ -20,6 +24,9 @@ export class HeroesComponent implements OnInit {
 
   onSelect(receivedHero: Hero): void {
     this.selectedHero = receivedHero;
+    this.messageService.add(
+      `HeroesComponent: selected hero id=${receivedHero.id}`
+    );
   }
 
   getHeroes(): void {
