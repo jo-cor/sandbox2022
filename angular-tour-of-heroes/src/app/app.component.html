@@ -1,3 +1,8 @@
 <h1>{{ title }}</h1>
-<app-heroes></app-heroes>
+<nav>
+  <a routerLink="/dashboard">dashboard</a> |
+  <a routerLink="/heroes">heroes</a>
+</nav>
+<router-outlet></router-outlet
+><!-- we used to have our <app-heroes></app-heroes> here, but now it is the app-routing the one that will decide what to show-->
 <app-messages></app-messages>
