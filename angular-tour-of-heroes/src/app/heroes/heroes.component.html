@@ -1,15 +1,20 @@
 <h2>My Super Heroes!</h2>
-<ul>
+<ul class="heroes">
   <li *ngFor="let disMaHero of heroes">
-    <button
+    <!-- https://angular.io/tutorial/toh-pt5#navigating-to-hero-details -->
+    <!-- like said... we'll handle displaying details via routing + parameter so instead of this button that
+    used to show the show the messageService functionality, we're replacing it by a simple anchor -->
+    <!-- <button
       [class.selected]="disMaHero === selectedHero"
       type="button"
       (click)="onSelect(disMaHero)"
-    >
+    > -->
+    <a routerLink="/detail/{{ this.disMaHero.id }}">
       <span class="badge">{{ disMaHero.id }}</span
       >&nbsp;
-      <span class="name">{{ disMaHero.name }}</span>
-    </button>
+      <span>{{ disMaHero.name }}</span>
+      <!-- </button> -->
+    </a>
   </li>
 </ul>
 <!-- we'll move the details to a component-->
@@ -21,4 +26,7 @@
     <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name" />
   </div>
 </div-->
-<app-hero-detail [hero]="this.selectedHero"></app-hero-detail>
+<!-- https://angular.io/tutorial/toh-pt5#navigating-to-hero-details -->
+<!-- we'll display the details from dashboard, heroes' list and direct url (routing + parameter) -->
+<!-- notice we used to pass the selectedHero via an input from component to component, this will change -->
+<!-- <app-hero-detail [hero]="this.selectedHero"></app-hero-detail> -->

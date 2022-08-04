@@ -18,4 +18,10 @@ export class HeroService {
     this.messagesService.add('HeroService: fetched heroes');
     return heroes;
   }
+
+  getHero(id: number): Observable<Hero> {
+    const hero = HEROES.find((r) => r.id === id)!;
+    this.messagesService.add(`HeroService: fetched hero id=${id}`); //The backtick ( ` ) characters define a JavaScript template literal for embedding the id.
+    return of(hero);
+  }
 }
