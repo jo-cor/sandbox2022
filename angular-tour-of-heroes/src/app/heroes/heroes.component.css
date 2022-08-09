@@ -52,3 +52,12 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
+.add-button {
+  color: #333;
+  background-color: #eee;
+  margin-bottom: 12px;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}

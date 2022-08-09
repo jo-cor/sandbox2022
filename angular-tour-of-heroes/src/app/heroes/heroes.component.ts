@@ -35,4 +35,14 @@ export class HeroesComponent implements OnInit {
     //the new way is asynchronous
     this.heroService.getHeroes().subscribe((r) => (this.heroes = r));
   }
+
+  addHero(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.heroService.addHero({ name } as Hero).subscribe((r) => {
+      this.heroes.push(r);
+    });
+  }
 }
