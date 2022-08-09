@@ -12,6 +12,9 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
   private heroesUrl = 'api/heroes';
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
   constructor(
     private messagesService: MessageService,
@@ -53,6 +56,16 @@ export class HeroService {
     return this.http.get<Hero>(url).pipe(
       tap((_) => this.log(`fetched hero [${id}]`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  updateHero(hero: Hero): Observable<any> {
+    //http.put [Returns an `Observable` of the response as a JSON object.]
+    //that JSON object can be any so the returned Observable MUST BE [any] as well, it must match the results from the http.put
+    //if we sign the method as returned Observable<Hero> then we should cast that 'any' to 'Hero'
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap((_) => this.log(`update hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
   }
 
