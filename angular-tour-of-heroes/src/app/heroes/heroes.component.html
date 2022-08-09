@@ -30,3 +30,15 @@
 <!-- we'll display the details from dashboard, heroes' list and direct url (routing + parameter) -->
 <!-- notice we used to pass the selectedHero via an input from component to component, this will change -->
 <!-- <app-hero-detail [hero]="this.selectedHero"></app-hero-detail> -->
+<div>
+  <label for="new-hero">Hero Name: </label>
+  <input id="new-hero" #heroName />
+  <button
+    type="button"
+    class="add-button"
+    (click)="addHero(heroName.value); heroName.value = ''"
+  >
+    add hero
+  </button>
+  <!-- ah que pinche loco! puedo hacer varias cosas desde template wwwwoooowowow -->
+</div>
