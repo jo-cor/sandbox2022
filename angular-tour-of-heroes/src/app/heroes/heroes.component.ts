@@ -45,4 +45,15 @@ export class HeroesComponent implements OnInit {
       this.heroes.push(r);
     });
   }
+
+  deleteHero(hero: Hero): void {
+    // i know i know i know... we are deleting from our 'own' list (this.heroes) they why da fuk do we need to call heroService.deleteHero?
+    // and not only that... why do we must subscribe to it? well... if we do not call/subscribe, the moment you hit
+    // http://localhost:4200/dashboard then http://localhost:4200/heroes now check HeroesComponent.ngOnInit... oooh! now you know!
+    // this onInit will call this.getHeroes which in turn will get heroService.getHeroes() which uses our unmodified mock database,
+    // unmodified mock database that was not deleted by this.heroService.deleteHero(...).subscribe()
+    // so... this SUBSCRIBE is really important.
+    this.heroes = this.heroes.filter((r) => r !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
 }
