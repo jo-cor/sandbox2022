@@ -1,0 +1,17 @@
+<div id="search-component">
+  <label for="search-box">Hero Search</label>
+  <!-- Every time the user types in the text box, the binding calls search() with the text box value as a search term.
+  The searchTerms becomes an Observable emitting a steady stream of search terms. -->
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <ul class="search-result">
+    <!-- 
+        MUCHO-IMPORTANTE:
+        https://angular.io/tutorial/toh-pt6#asyncpipe
+        at *ngFor, the currency symbol denotes the variable is an Observable 
+        *ngFor requires additional configuration to handle Observables so we use the pipe and [async] so we subscribe to the Observable
+    -->
+    <li *ngFor="let maHero of heroes$ | async">
+      <a routerLink="/detail/{{ maHero.id }}">{{ maHero.name }}</a>
+    </li>
+  </ul>
+</div>
