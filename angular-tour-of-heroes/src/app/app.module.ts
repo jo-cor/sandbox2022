@@ -13,6 +13,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 //I ran into a versioning problem when updating this because of different versions [Your global Angular CLI version (14.1.1) is greater than your local version (13.2.6). The local Angular CLI version is used.]
 //I had to update with [ng update @angular/core@14 @angular/cli@14] via https://update.angular.io/?v=13.0-14.0
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
+    HeroSearchComponent,
   ],
   imports: [
     BrowserModule,

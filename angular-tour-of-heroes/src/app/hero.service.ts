@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, catchError, map, tap } from 'rxjs';
 import { Hero } from './hero';
@@ -83,6 +83,25 @@ export class HeroService {
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
       tap((_) => this.log(`deleted hero, id [${id}]`)),
       catchError(this.handleError<Hero>('deleteHero'))
+    );
+  }
+
+  searchHeroesNonObservable(term: string): Hero[] {
+    const output: any = [];
+    return output;
+  }
+
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+      tap((r) =>
+        r.length
+          ? this.log(`found heroes matching [${term}]`)
+          : this.log(`no heroes found for [${term}]`)
+      ),
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
 
